@@ -1,6 +1,7 @@
 package org.skan.pages;
 
 import com.codeborne.selenide.SelenideElement;
+import org.skan.pages.components.CalendarComponent;
 
 import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.$;
@@ -8,38 +9,48 @@ import static com.codeborne.selenide.Selenide.open;
 
 public class RegistrationFormPage {
 
-    SelenideElement firstNameInput = $("#firstName");
-    SelenideElement lastNameInput = $("#lastName");
-    SelenideElement emailInput = $("#userEmail");
-    SelenideElement genderElement = $("#genterWrapper");
-    SelenideElement phoneInput = $("#userNumber");
-    //SelenideElement firstNameInput = $("#firstName");
-    public void openPage (){
+    private CalendarComponent calendarComponent=new CalendarComponent();
+
+    private SelenideElement
+            firstNameInput = $("#firstName"),
+            lastNameInput = $("#lastName"),
+            emailInput = $("#userEmail"),
+            genderElement = $("#genterWrapper"),
+            phoneInput = $("#userNumber");
+
+    public RegistrationFormPage openPage (){
         open("/automation-practice-form");
-
+        return this;
     }
 
-    public void setFirstName(String name){
+    public RegistrationFormPage setFirstName(String name){
         firstNameInput.setValue(name);
+        return this;
     }
 
-    public void setLastName(String name){
+    public RegistrationFormPage setLastName(String name){
         lastNameInput.setValue(name);
+        return this;
     }
 
-    public void setEmail(String email){
+    public RegistrationFormPage setEmail(String email){
         emailInput.setValue(email);
+        return this;
     }
 
-    public void setGender(String value){
+    public RegistrationFormPage setGender(String value){
         genderElement.$(byText(value)).click();
+        return this;
     }
 
-    public void setPhone(String value){
+    public RegistrationFormPage setPhone(String value){
         phoneInput.setValue(value);
+        return this;
     }
 
-    public void setDateOfBirth(String name){
-        $("#firstName").setValue(name);
+    public RegistrationFormPage setBirthDate(String day, String month, String year){
+        $("#dateOfBirthInput").click();
+        calendarComponent.setDate(day,month,year);
+        return this;
     }
 }
