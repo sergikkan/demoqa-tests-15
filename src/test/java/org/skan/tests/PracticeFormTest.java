@@ -1,31 +1,36 @@
-package org.skan;
+package org.skan.tests;
 
 import com.codeborne.selenide.Condition;
 import com.codeborne.selenide.Configuration;
 import org.junit.jupiter.api.BeforeAll;
 import org.junit.jupiter.api.Test;
+import org.skan.pages.RegistrationFormPage;
 
 import java.io.File;
 
+import static com.codeborne.selenide.Selectors.byText;
 import static com.codeborne.selenide.Selenide.*;
 
-public class PracticeFormClass {
+public class PracticeFormTest {
 
     @BeforeAll
     static void setUp(){
         Configuration.baseUrl="https://demoqa.com";
-        //Configuration.holdBrowserOpen=true;
+        Configuration.holdBrowserOpen=true;
         //Configuration.pageLoadTimeout=150000;
         Configuration.browserSize="1920x1080";
     }
 
     @Test
     void fillPracticeFormTest() {
-        open("/automation-practice-form");
-        $("#firstName").setValue("Sergey");
-        $("#lastName").setValue("Kan");
-        $("#userEmail").setValue("Sergey@google.com");
-        $x("//label[@for='gender-radio-1']").click();
+        RegistrationFormPage registrationFormPage = new RegistrationFormPage();
+        registrationFormPage.openPage();
+        registrationFormPage.setFirstName("Sergey");
+        registrationFormPage.setLastName("Kan");
+        registrationFormPage.setEmail("Sergey@google.com");
+        registrationFormPage.setGender("Male");
+        registrationFormPage.setPhone("7771234567");
+        //$("#genterWrapper").$(byText("Male")).click();
         $("#userNumber").setValue("7771234567");
         $("#dateOfBirthInput").click();
         $(".react-datepicker__month-select").selectOption("May");
