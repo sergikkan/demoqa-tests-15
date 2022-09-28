@@ -30,26 +30,24 @@ public class PracticeFormTest {
                 .setEmail("Sergey@google.com")
                 .setGender("Male")
                 .setPhone("7123477777")
-                .setBirthDate("22", "May","1990");
-        $("#subjectsInput").setValue("Maths").pressEnter();
-        $x("//label[@for='hobbies-checkbox-1']").click();
-        $("#uploadPicture").uploadFile(new File("src/test/resources/testpicture.jpeg"));
-        $("#currentAddress").setValue("some address");
-        $("#react-select-3-input").setValue("NCR").pressTab();
-        $("#react-select-4-input").setValue("Delhi").pressEnter().pressEnter();
-
-        $("#example-modal-sizes-title-lg").shouldHave(Condition.text("Thanks for submitting the form"));
-        $x("//tbody/tr[1]/td[2]").shouldHave(Condition.text("Sergey Kan"));
-        $x("//tbody/tr[2]/td[2]").shouldHave(Condition.text("Sergey@google.com"));
-        $x("//tbody/tr[3]/td[2]").shouldHave(Condition.text("Male"));
-        $x("//tbody/tr[4]/td[2]").shouldHave(Condition.text("7123477777"));
-        $x("//tbody/tr[5]/td[2]").shouldHave(Condition.text("22 May,1990"));
-        $x("//tbody/tr[6]/td[2]").shouldHave(Condition.text("Maths"));
-        $x("//tbody/tr[7]/td[2]").shouldHave(Condition.text("Sports"));
-        $x("//tbody/tr[8]/td[2]").shouldHave(Condition.text("testpicture.jpeg"));
-        $x("//tbody/tr[9]/td[2]").shouldHave(Condition.text("some address"));
-        $x("//tbody/tr[10]/td[2]").shouldHave(Condition.text("NCR Delhi"));
-
+                .setBirthDate("22", "May","1990")
+                .setSubject("Maths")
+                .chooseHobbies("Sports")
+                .uploadImage("src/test/resources/testpicture.jpeg")
+                .setAddress("some address")
+                .selectState("NCR")
+                .selectCity("Delhi")
+                .checkResultsTableVisible()
+                .checkResult("Student Name", "Sergey Kan")
+                .checkResult("Student Email", "Sergey@google.com")
+                .checkResult("Gender", "Male")
+                .checkResult("Mobile", "7123477777")
+                .checkResult("Date of Birth", "22 May,1990")
+                .checkResult("Subjects", "Maths")
+                .checkResult("Hobbies", "Sports")
+                .checkResult("Picture", "testpicture.jpeg")
+                .checkResult("Address", "some address")
+                .checkResult("State and City", "NCR Delhi");
 
     }
 }
