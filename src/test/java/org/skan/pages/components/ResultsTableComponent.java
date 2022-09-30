@@ -15,10 +15,6 @@ public class ResultsTableComponent {
         return this;
     }
 
-    @Test
-    void name() {
-    }
-
     public ResultsTableComponent checkResult(String key, String value){
         $(".table-responsive table").$(byText(key))
                 .parent().shouldHave(Condition.text(value));
