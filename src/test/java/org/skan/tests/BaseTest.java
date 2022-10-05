@@ -7,7 +7,7 @@ import org.skan.pages.RegistrationFormPage;
 
 import org.skan.utils.Month;
 
-public class TestBase {
+public class BaseTest {
 
     Faker faker= new Faker();
 
@@ -16,7 +16,7 @@ public class TestBase {
             email=faker.internet().emailAddress(),
             gender=faker.demographic().sex(),
             phone=faker.phoneNumber().subscriberNumber(10),
-            day= String.valueOf(faker.number().numberBetween(1,28)),
+            day= String.valueOf(faker.number().numberBetween(10,28)),
             month= String.valueOf(Month.getRandomMonth()),
             year= String.valueOf(faker.number().numberBetween(1970,2004)),
             address=faker.address().fullAddress(),
